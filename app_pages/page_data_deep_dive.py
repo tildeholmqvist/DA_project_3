@@ -13,23 +13,56 @@ def data_deep_dive_body():
         f"the rest of Europe."
     )
 
-    # --- Hypothesis, stated BEFORE any data is shown ---
-    st.write("### Hypothesis")
-    st.info(
-        f"**H1:** Wildfire severity in Southern Europe is not uniform "
-        f"across countries — some countries experience frequent, smaller "
-        f"fires, while others experience rarer but more severe fires, "
-        f"despite sharing a similar Mediterranean climate."
-    )
-
     # Load the processed dataset
     df = pd.read_csv("inputs/processed/wildfires_long_format.csv")
+
+    # --- Section: Europe-wide comparison (comes first) ---
+    st.write("### Europe-Wide Comparison")
+
+    st.write(
+        f"Compare average annual burnt area across all 31 countries in the "
+        f"dataset, to identify which countries are most affected by "
+        f"wildfires in Europe."
+    )
+
+    avg_by_country = df.groupby('country_name')['burnt_area_ha'].mean().sort_values(ascending=False).reset_index()
+    top15 = avg_by_country.head(15)
+
+    fig = px.bar(top15, x='burnt_area_ha', y='country_name', orientation='h',
+                 title='Average Annual Burnt Area by Country (Top 15, 1980-2024)',
+                 labels={'burnt_area_ha': 'Average Burnt Area (hectares/year)', 'country_name': 'Country'})
+    fig.update_layout(yaxis={'categoryorder': 'total ascending'})
+    st.plotly_chart(fig)
+    st.caption("Source: EFFIS / Copernicus, 1980-2024")
+
+    st.write(
+        f"Spain tops the list — even ahead of Portugal and Italy, which are "
+        f"often associated more strongly with wildfire risk in public "
+        f"perception. France ranks only 6th overall, with a relatively low "
+        f"historical average (23k hectares/year) — a notable contrast to "
+        f"Spain's high ranking."
+    )
+
+    st.success(
+        f"This confirms why Spain, Portugal, France, and Greece are the "
+        f"focus of the deeper analysis that follows."
+    )
+
+    # --- Hypothesis, stated BEFORE the focus-country data is shown ---
+    st.write("### Hypothesis")
+    st.info(
+        f"**H1:** Among Spain, Portugal, France, and Greece, wildfire "
+        f"severity patterns are not uniform — some of these countries "
+        f"experience frequent, smaller fires, while others experience "
+        f"rarer but more severe fires, despite sharing a similar "
+        f"Mediterranean climate."
+    )
 
     # Filter down to the four focus countries
     focus_countries = ['Spain', 'Portugal', 'France', 'Greece']
     df_focus = df[df['country_name'].isin(focus_countries)]
 
-    # --- Section 1: Burnt area trends over time ---
+    # --- Section: Burnt area trends over time ---
     st.write("### Burnt Area Over Time")
 
     fig = px.line(df_focus, x='Year', y='burnt_area_ha', color='country_name',
@@ -46,7 +79,7 @@ def data_deep_dive_body():
         f"three countries throughout the entire period."
     )
 
-    # --- Section 2: Average fire size per country (ha per fire) ---
+    # --- Section: Average fire size per country (ha per fire) ---
     st.write("### Average Fire Size by Country")
 
     st.write(
@@ -55,10 +88,7 @@ def data_deep_dive_body():
         f"by number of fires gives the average size of a single fire."
     )
 
-    # Average burnt area and number of fires per year, per country
     avg_fires_focus = df_focus.groupby('country_name')[['burnt_area_ha', 'number_of_fires']].mean().reset_index()
-
-    # ha_per_fire = average hectares burnt per single fire
     avg_fires_focus['ha_per_fire'] = avg_fires_focus['burnt_area_ha'] / avg_fires_focus['number_of_fires']
     avg_fires_focus = avg_fires_focus.sort_values('ha_per_fire', ascending=False)
 
@@ -77,33 +107,34 @@ def data_deep_dive_body():
         f"many more frequent but smaller fires."
     )
 
-    # --- Section 3: Europe-wide comparison ---
-    st.write("### Europe-Wide Comparison")
+    # --- Section: Fire frequency vs fire size (scatter) ---
+    st.write("### Fire Frequency vs Average Fire Size")
 
-    st.write(
-        f"How do the four focus countries rank against the rest of Europe? "
-        f"Here are the top 15 countries by average annual burnt area."
-    )
-
-    # Average burnt area per year, across all countries in the dataset
-    avg_by_country = df.groupby('country_name')['burnt_area_ha'].mean().sort_values(ascending=False).reset_index()
-    top15 = avg_by_country.head(15)
-
-    fig = px.bar(top15, x='burnt_area_ha', y='country_name', orientation='h',
-                 title='Average Annual Burnt Area by Country (Top 15, 1980-2024)',
-                 labels={'burnt_area_ha': 'Average Burnt Area (hectares/year)', 'country_name': 'Country'})
-    fig.update_layout(yaxis={'categoryorder': 'total ascending'})
+    fig = px.scatter(avg_fires_focus, x='number_of_fires', y='ha_per_fire',
+                      text='country_name', size='burnt_area_ha',
+                      title='Fire Frequency vs Average Fire Size',
+                      labels={'number_of_fires': 'Average Number of Fires per Year',
+                              'ha_per_fire': 'Average Hectares per Fire'})
+    fig.update_traces(textposition='top center')
     st.plotly_chart(fig)
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.write(
-        f"Spain tops the list — even ahead of Portugal and Italy, which are "
-        f"often associated more strongly with wildfire risk in public "
-        f"perception. France ranks only 6th overall, with a relatively low "
-        f"historical average compared to the other three focus countries."
+        f"This chart plots each country by two measurements at once: how "
+        f"often fires happen (left to right) and how large each fire tends "
+        f"to be (bottom to top). A country in the bottom-right has many "
+        f"small fires; a country in the top-left has few large fires."
     )
 
-    # --- Validation, stated AFTER the evidence above ---
+    st.success(
+        f"This chart confirms the pattern directly: Portugal and France sit "
+        f"toward the bottom-right (frequent, smaller fires), while Greece "
+        f"sits clearly in the top-left (infrequent but very large fires). "
+        f"Spain falls in between — a moderate number of fires, but each "
+        f"noticeably larger than Portugal's or France's."
+    )
+
+    # --- Validation, stated AFTER all the evidence above ---
     st.write("### Validation")
     st.success(
         f"This hypothesis is confirmed by the data: Greece has the fewest "

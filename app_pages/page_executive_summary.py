@@ -9,7 +9,7 @@ def executive_summary_body():
 
     st.info(
         f"This page summarises wildfire trends in Southern Europe (1980-2024) "
-        f"in plain language, with a focus on Spain, Portugal, France, and Greece."
+        f"in plain language, with a focus on Spain, Portugal, France and Greece."
     )
 
     st.warning(
