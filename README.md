@@ -21,8 +21,9 @@
 
 In July 2026, wildfires forced over 300,000 evacuations across Spain and
 France; Spain declared its first-ever national wildfire emergency. As of
-July 2026, France had recorded 3.4 times its annual average number of fires,
-and Spain 1.7 times its average (Copernicus data, via CNN, 27 July 2026).
+July 2026, France had recorded 3.4 times its annual average number of
+fires, and Spain 1.7 times its average
+([Copernicus data, via CNN, 27 July 2026](https://www.cnn.com/2026/07/27/world/live-news/france-spain-wildfires-evacuations)).
 
 This project uses 45 years of official EU wildfire statistics (1980-2024) to
 explore whether the current crisis reflects a longer-term pattern, or whether
@@ -205,20 +206,123 @@ analysis and voice.
 
 ## Dashboard Design
 
+The dashboard is built with Streamlit, using a multi-page structure
+(`app.py` + `app_pages/`), with four pages:
+
+### 📌 Executive Summary
+Plain-language overview for a non-technical audience, with a current-events
+context note and one key chart.
+
+![Executive Summary](docs/images/executive_summary.png)
+
+### 🔬 Data & Trends Deep Dive
+Full methodology for a technical audience: Europe-wide comparison, the
+project hypothesis, detailed charts (line, bar, scatter), and validation.
+
+![Data & Trends Deep Dive](docs/images/data_deep_dive.png)
+
+### ⚖️ Ethics & Data Governance
+Data source, privacy, known limitations (including fire cause and source
+reliability), responsible use, and AI usage disclosure.
+
+![Ethics & Data Governance](docs/images/ethics.png)
+
+### ℹ️ About
+Data source, license, and author information.
+
+![About](docs/images/about.png)
+
+### Design Principles
+- Written for a reader with zero prior knowledge of climate science or data
+  analysis
+- Source citations (`st.caption`) under every chart
+- Clear separation between historical data (1980-2024) and current events
+  context (2025-2026), stated explicitly wherever the latter is referenced
+
+---
+
 ## Project Plan
+
+| Phase | Description | Status |
+|---|---|---|
+| 1. Set up project structure and dependencies | Repo structure, requirements.txt, .gitignore | Done |
+| 2. ETL Pipeline — Extract, Transform, Load | Clean and reshape EFFIS wildfire data from wide to long format | Done |
+| 3. EDA — Exploratory Data Analysis | Explore wildfire trends in Spain, Portugal, France, Greece, and across Europe | Done |
+| 4. Ethics & Data Governance Documentation | Document data privacy, bias, and source reliability considerations | Done |
+| 5. Streamlit Dashboard — Wildfire Trends Explorer | Build multi-page dashboard for technical and non-technical audiences | Done |
+| 6. Testing & Deployment | User testing, bug fixes, deployment to Render | Done |
+| 7. Documentation — README and Reflections | Finalise README: business requirements, project plan, reflections | Done |
+
+Full task tracking is available on the project's
+[GitHub Projects board](https://github.com/users/tildeholmqvist/projects/12).
+
+---
 
 ## Reflection on Challenges
 
+1. **Finding a trustworthy data source** — several Kaggle datasets turned
+   out to be synthetic/fabricated rather than real data, which required
+   extra research to find a credible source (EFFIS/Copernicus). This
+   process is documented in `jupyter_notebooks/01_data_cleaning.ipynb`.
+
+2. **Handling structural gaps in the data** — countries joined EFFIS
+   reporting at different points in time, creating missing values in early
+   years for some countries. Rather than filling these gaps with imputed
+   values (which would have fabricated data), rows with no data at all were
+   dropped, while partial data was retained.
+
+3. **Balancing historical data with an unfolding current event** — deciding
+   how much to reference the ongoing 2025-2026 wildfire crisis without
+   blending it into the statistical analysis of the 1980-2024 dataset. This
+   required being explicit throughout the project about which claims come
+   from the dataset versus from real-time news sources, and treating
+   verified historical statistics (e.g. Spain's arson data) differently
+   from unverified statements made during an active crisis (e.g. France's
+   2026 figures).
+
+---
+
 ## Technologies Used
+
+- **Python** (pandas, numpy)
+- **Jupyter Notebooks** — data cleaning and exploratory data analysis
+- **Streamlit** — interactive dashboard
+- **Plotly** — data visualisations (line, bar, scatter charts)
+- **Git / GitHub** — version control, project management (GitHub Projects)
+- **Render** — dashboard deployment
+
+---
 
 ## Credits and Acknowledgements
 
-### VIKTIGT ATT TA MED!!!
+### Dataset
 
-ANG PLOTEN DÄR VI JÄMFÖR ALLA LÄNDER I 02_EDA i stapeldiagrammet
+* [Forest Fires in Europe, Middle East and North Africa](https://forest-fire.emergency.copernicus.eu/applications/data-and-services) — European Forest Fire Information System (EFFIS), Copernicus Emergency Management Service, European Commission Joint Research Centre
 
-*Note: This dataset covers 1980-2024. As of writing (July 2026), France and Spain
-are experiencing a severe ongoing wildfire season — France has recorded 3.4 times
-its typical annual number of fires (Copernicus data, via CNN, 27 July 2026). This
-recent crisis is not reflected in the analysis above but provides real-world context
-for why this topic remains highly relevant.*
+### Fire Cause Statistics
+
+* [Civio — Forests Fires Map](https://civio.es/en/environment/forest-fires-map/), based on official Spanish government data
+* [CNN, 27 July 2026](https://www.cnn.com/2026/07/27/world/live-news/france-spain-wildfires-evacuations), reporting Copernicus data on the 2026 wildfire season
+
+### AI Assistance
+
+* Claude (Anthropic) was used throughout this project as the primary AI
+  assistant.
+* Claude was used for: project structure and code scaffolding, debugging
+  support, README drafting, and fact-checking specific statistics (e.g.
+  arson rates, current event figures) once relevant ethical concerns had
+  already been identified by the author.
+* All hypotheses, analytical interpretations, business reasoning, data
+  cleaning decisions, ethical reasoning, and the underlying notebooks are
+  the author's own. See the Ethics section for full AI usage disclosure.
+
+### Code
+
+* The multi-page Streamlit app template (`multi_page.py`, `app.py`) and the
+  Jupyter notebook workflow structure are adapted from Code Institute LMS
+  walkthrough lessons and templates, applied to this project's own dataset,
+  hypothesis, and analysis.
+
+### Acknowledgements
+
+* Code Institute LMS — course material and project template
