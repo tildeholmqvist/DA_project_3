@@ -223,13 +223,16 @@ context note and one key chart.
 Full methodology for a technical audience: Europe-wide comparison, the
 project hypothesis, detailed charts (line, bar, scatter), and validation.
 
-![Data & Trends Deep Dive](docs/images/data_deep_dive.png)
+![Data & Trends Deep Dive - Europe-Wide Comparison and Hypothesis](docs/images/data_deep_dive_1.png)
+![Data & Trends Deep Dive - Burnt Area Trends and Fire Size](docs/images/data_deep_dive_2.png)
+![Data & Trends Deep Dive - Fire Frequency vs Size and Validation](docs/images/data_deep_dive_3.png)
 
 ### ⚖️ Ethics & Data Governance
 Data source, privacy, known limitations (including fire cause and source
 reliability), responsible use, and AI usage disclosure.
 
-![Ethics & Data Governance](docs/images/ethics.png)
+![Ethics & Data Governance - Data Source, Privacy, and Known Limitations](docs/images/ethics_1.png)
+![Ethics & Data Governance - Responsible Use and AI Usage Disclosure](docs/images/ethics_2.png)
 
 ### ℹ️ About
 Data source, license, and author information.
