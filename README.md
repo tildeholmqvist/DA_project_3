@@ -103,7 +103,7 @@ similar Mediterranean climate.
 **Validation:** This hypothesis is confirmed by the data: Greece has the
 fewest fires per year (1,371) but the largest average size (32 ha/fire),
 while Portugal has the most fires (18,214/year) but the smallest average
-size (6.25 ha/fire). Spain and France fall between these two patterns.
+size (6.3 ha/fire). Spain and France fall between these two patterns.
 
 Full analysis, charts, and supporting evidence are documented in
 `jupyter_notebooks/02_eda.ipynb` and reproduced in the Streamlit dashboard's

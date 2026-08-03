@@ -140,6 +140,6 @@ def data_deep_dive_body():
         f"This hypothesis is confirmed by the data: Greece has the fewest "
         f"fires per year (1,371) but the largest average size (32 ha/fire), "
         f"while Portugal has the most fires (18,214/year) but the smallest "
-        f"average size (6.25 ha/fire). Spain and France fall between these "
+        f"average size (6.3 ha/fire). Spain and France fall between these "
         f"two patterns."
     )
