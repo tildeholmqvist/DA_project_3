@@ -11,9 +11,13 @@
 6. [Ethics, Privacy and Data Governance](#ethics-privacy-and-data-governance)
 7. [Dashboard Design](#dashboard-design)
 8. [Project Plan](#project-plan)
-9. [Reflection on Challenges](#reflection-on-challenges)
-10. [Technologies Used](#technologies-used)
-11. [Credits and Acknowledgements](#credits-and-acknowledgements)
+9. [Testing & Validation](#testing--validation)
+10. [Unfixed Bugs](#unfixed-bugs)
+11. [Future Improvements](#future-improvements)
+12. [Reflection on Challenges](#reflection-on-challenges)
+13. [Technologies Used](#technologies-used)
+14. [How to Run](#how-to-run)
+15. [Credits and Acknowledgements](#credits-and-acknowledgements)
 
 ---
 
@@ -258,6 +262,33 @@ Full task tracking is available on the project's
 
 ---
 
+## Testing & Validation
+
+---
+
+## Unfixed Bugs
+
+---
+
+## Future Improvements
+
+* **Fire cause data:** If a dataset distinguishing fire cause (e.g. arson
+  vs. natural ignition) becomes available, it could be merged with the
+  EFFIS data to explore the human/climate contribution to wildfire trends
+  more directly (see [Known Limitations](#ethics-privacy-and-data-governance)).
+* **Broader country coverage:** The current analysis focuses on four
+  countries; expanding the detailed comparison to more of the 31 countries
+  in the dataset could reveal further regional patterns.
+* **Simple trend forecasting:** Adding a basic trend-line extrapolation
+  (not full machine learning) could give readers a rough sense of where
+  current patterns might lead, clearly labelled as illustrative rather
+  than predictive.
+* **Deployment performance:** As currently deployed on Render's free tier,
+  the app may be slow to "wake up" after inactivity. Upgrading to a paid
+  tier would improve user experience for a production use case.
+
+---
+
 ## Reflection on Challenges
 
 1. **Finding a trustworthy data source** — several Kaggle datasets turned
@@ -290,6 +321,66 @@ Full task tracking is available on the project's
 - **Plotly** — data visualisations (line, bar, scatter charts)
 - **Git / GitHub** — version control, project management (GitHub Projects)
 - **Render** — dashboard deployment
+
+---
+
+## How to Run
+### Prerequisites
+* Python 3.12
+* Git
+### Setup
+1. Clone the repository:
+```bash
+   git clone https://github.com/tildeholmqvist/DA_project_3.git
+   cd DA_project_3
+```
+2. Create and activate a virtual environment:
+```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+```
+3. Install dependencies:
+```bash
+   pip install -r requirements.txt
+```
+### Running the Notebooks
+The two Jupyter notebooks are located in `jupyter_notebooks/` and should 
+be run in order:
+1. `01_data_cleaning.ipynb` — cleans the raw EFFIS data and saves the 
+   processed dataset to `inputs/processed/`
+2. `02_eda.ipynb` — performs exploratory data analysis and validates the 
+   project hypothesis
+Each notebook includes a "Change working directory" step near the top 
+that should only be run once per kernel session.
+### Running the Streamlit App Locally
+```bash
+streamlit run app.py
+```
+The app will open at `http://localhost:8501`.
+### Deployment (Render)
+The app is deployed to Render using a Docker image. Render builds the 
+`Dockerfile` in the repository root, runs the container, and exposes it 
+on a public HTTPS URL.
+**Deploy steps:**
+1. Push the repository (including the `Dockerfile`, `app.py`, and 
+   `requirements.txt`) to GitHub.
+2. Sign in to the [Render Dashboard](https://dashboard.render.com/) and 
+   click **New → Web Service**.
+3. Connect the GitHub account and select the repository.
+4. Configure the service:
+   * Language / Runtime: `Docker` (Render auto-detects the `Dockerfile`)
+   * Branch: `main`
+   * Region: Frankfurt (EU Central)
+   * Instance Type: Free plan (note: free services spin down after 
+     inactivity and cold-start on the next request)
+5. Render automatically injects a `PORT` environment variable — the 
+   Dockerfile binds Streamlit to it, so no extra configuration is 
+   required.
+6. Click **Create Web Service**. Render builds the Docker image, starts 
+   the container, and publishes the app at 
+   `https://da-project-3-wildfires.onrender.com`.
+7. Every push to `main` triggers an automatic rebuild and redeploy.
+**Live App:** [https://da-project-3-wildfires.onrender.com](https://da-project-3-wildfires.onrender.com)
 
 ---
 
