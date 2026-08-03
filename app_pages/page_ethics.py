@@ -39,13 +39,25 @@ def ethics_body():
     )
 
     st.write(
-    f"Fire cause matters ethically. In Spain, official data shows 55% of "
-    f"fires between 1983-2021 were started intentionally (Civio, based on "
-    f"government data). In France's 2026 wildfire season, authorities "
-    f"confirmed 9 out of 10 fires were human-caused (deliberate or "
-    f"accidental), with 111 arrests made (French Interior Ministry, via "
-    f"Euronews, July 2026). This dataset does not distinguish cause, which "
-    f"limits how findings should be interpreted."
+        f"Fire cause matters ethically. In Spain, official data shows 55% "
+        f"of fires between 1983-2021 were started intentionally (Civio, "
+        f"based on Spanish government data) — a figure available because "
+        f"the fire season is long over and the data has been compiled and "
+        f"published."
+    )
+    st.write(
+        f"In France, President Macron has publicly stated that around 9 "
+        f"out of 10 wildfires during the still-ongoing 2026 season were "
+        f"human-caused. Unlike Spain's figure, this is a political "
+        f"statement made during an active crisis, not a verified, "
+        f"published statistic — official cause data for an ongoing fire "
+        f"season is simply not yet available. It is included here only to "
+        f"show that fire cause is being taken seriously as an issue, not "
+        f"as a data point comparable to Spain's figure."
+    )
+    st.write(
+        f"This dataset itself does not distinguish fire cause at all, "
+        f"which further limits how findings should be interpreted."
     )
 
     # --- Responsible use of the dashboard ---
