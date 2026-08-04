@@ -206,6 +206,32 @@ were fact-checked against their original documentation before use, and
 AI-drafted text was reviewed and adjusted to reflect the author's own
 analysis and voice.
 
+### Course Ethics Concepts Applied
+
+This project draws on concepts from the "Ethical considerations in
+Artificial Intelligence" and "Biases in Generative AI" course modules.
+Each concept is connected below, even where the link is brief — some
+topics are not directly applicable to a wildfire dataset, and this is
+noted honestly rather than forced.
+
+| Course Topic | Application to This Project |
+|---|---|
+| Introduction to Ethics | Frames the entire Ethics section above |
+| Roboethics | Brief parallel: standardised data collection and reporting across 30+ countries (as used by EFFIS) raises similar questions to those posed by automation replacing local human judgement and knowledge |
+| Moral Dilemmas of AI | Brief parallel: real-world firefighting resource allocation between simultaneous crises (e.g. Greek, Italian, and Portuguese fire crews sent to assist Spain in 2026) resembles the prioritisation dilemmas explored via the Moral Machine exercise |
+| Ethics of Automation | Directly relevant: standardised, systematic fire detection and reporting may be faster and more consistent than ad-hoc human monitoring, but may still miss smaller or early-stage fires (below the ~30 hectare EFFIS detection threshold) |
+| Ethics of Healthcare Robotics | Not applicable to this project's domain |
+| Ethics of Military Robotics | Not applicable to this project's domain |
+| AI Ethics Governance | Relevant: the governance applied to this project itself, e.g. rejecting several synthetic Kaggle datasets before selecting the verified EFFIS source (see `01_data_cleaning.ipynb`) |
+| Ethical Risk Management | The Ethics section above is structured as a risk assessment: identifying risks (fire cause not recorded, uneven country reporting), assessing their impact, and documenting mitigations |
+| Ethical Risk Management Practices | The structured approach in the Ethics section above (identifying risks, checking sources, documenting limitations) reflects the practices covered in this course topic |
+| Case Studies and Practical Applications | Parallel to the AI hiring-bias case study: this project's data was actively reviewed for bias (uneven reporting between countries) rather than taken at face value |
+| Biases in Generative AI | Connects to the AI Usage Disclosure above |
+| Ethical Dilemmas and Decision-Making (Moral Machine) | Brief parallel: cultural and national differences in what is prioritised during a crisis are relevant here too, since different countries (Spain, France, Greece) report and respond to wildfires differently |
+| Uncovering Bias in AI | Directly applied: AI-suggested claims were checked and corrected during this project (e.g. an unverified comparison involving Portuguese media coverage was removed after being challenged, and an unreliable arrest-count statistic for France was replaced with a more cautious statement, once sources were found to be inconsistent) |
+| Responsible Use and Disclosure of AI | Directly applied — see AI Usage Disclosure above |
+| An Ethics Committee | Reflective question: if this dashboard were used in a real policy setting, a governance body would ideally include EFFIS data scientists, wildfire management experts from each focus country, and representatives from affected communities |
+
 ---
 
 ## Dashboard Design
@@ -267,9 +293,42 @@ Full task tracking is available on the project's
 
 ## Testing & Validation
 
+### Notebook Validation
+Both Jupyter notebooks (`01_data_cleaning.ipynb`, `02_eda.ipynb`) were run
+from start to finish using "Restart & Run All", confirming they execute
+without errors in a fresh kernel session.
+
+During this process, a bug was identified and fixed in `02_eda.ipynb` (see
+[Unfixed Bugs](#unfixed-bugs) for details).
+
+### Code Validation
+All Python files (`app.py` and `app_pages/*.py`) were validated using the
+Code Institute PEP8 Validator
+([pep8ci.herokuapp.com](https://pep8ci.herokuapp.com/#)), with no errors
+found.
+
+### Manual Testing — Streamlit Dashboard
+Each of the four dashboard pages (Executive Summary, Data & Trends Deep
+Dive, Ethics & Data Governance, About) was manually tested on the live
+deployed app, confirming:
+* No errors or crashes on any page
+* All charts render correctly with source captions
+* Text is readable and free of unexplained technical terms, in line with
+  the project's goal of being accessible to a reader with zero prior
+  knowledge of climate science or data analysis
+
 ---
 
 ## Unfixed Bugs
+
+No functional bugs remain at the time of submission.
+
+During testing, one bug was identified and fixed: running "Restart & Run
+All" on `02_eda.ipynb` revealed a `NameError: name 'px' is not defined` in
+the Europe-Wide Comparison section. This happened because `import
+plotly.express as px` was originally placed later in the notebook, after
+the section was reordered to appear first. Fixed by moving the import to
+the top of the notebook, alongside `import pandas as pd`.
 
 ---
 
@@ -322,8 +381,10 @@ Full task tracking is available on the project's
 - **Jupyter Notebooks** — data cleaning and exploratory data analysis
 - **Streamlit** — interactive dashboard
 - **Plotly** — data visualisations (line, bar, scatter charts)
+- **Docker** — containerisation for deployment
 - **Git / GitHub** — version control, project management (GitHub Projects)
 - **Render** — dashboard deployment
+- **Code Institute PEP8 Validator** ([pep8ci.herokuapp.com](https://pep8ci.herokuapp.com/#)) — Python code style validation
 
 ---
 

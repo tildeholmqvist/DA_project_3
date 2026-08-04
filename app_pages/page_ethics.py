@@ -6,8 +6,8 @@ def ethics_body():
     st.write("## Ethics & Data Governance")
 
     st.info(
-        f"This page reflects on the ethical considerations and limitations "
-        f"of the data used in this project."
+        f"This page reflects on the ethical considerations and "
+        f"limitations of the data used in this project."
     )
 
     # --- Data source & privacy ---
@@ -15,102 +15,109 @@ def ethics_body():
     st.write(
         f"The data comes from EFFIS (European Forest Fire Information "
         f"System), a public dataset published by Copernicus. It only "
-        f"contains country-level totals — burnt area and number of fires "
-        f"per year. There is no personal or identifiable information in "
-        f"this dataset, so there are no privacy concerns."
+        f"contains country-level totals — burnt area and number of "
+        f"fires per year. There is no personal or identifiable "
+        f"information in this dataset, so there are no privacy "
+        f"concerns."
     )
 
     # --- Known limitations of the dataset ---
     st.write("### Known Limitations")
     st.write(
         f"The dataset does not record the *cause* of each fire (e.g. "
-        f"arson, agricultural burning, lightning, or accidental ignition). "
-        f"This means the analysis can describe patterns in wildfire "
-        f"frequency and severity, but it cannot explain why fires started, "
-        f"or how much of the trend is due to climate change versus other "
-        f"factors such as land management or population changes."
+        f"arson, agricultural burning, lightning, or accidental "
+        f"ignition). This means the analysis can describe patterns in "
+        f"wildfire frequency and severity, but it cannot explain why "
+        f"fires started, or how much of the trend is due to climate "
+        f"change versus other factors such as land management or "
+        f"population changes."
     )
     st.write(
-        f"Countries also joined EFFIS reporting at different points in "
-        f"time, so some countries have missing data in the earlier years. "
-        f"This was accounted for during data cleaning, but readers should "
-        f"still be cautious when comparing very early years across "
-        f"countries."
+        f"Countries also joined EFFIS reporting at different points "
+        f"in time, so some countries have missing data in the earlier "
+        f"years. This was accounted for during data cleaning, but "
+        f"readers should still be cautious when comparing very early "
+        f"years across countries."
     )
 
     st.write(
-        f"Fire cause matters ethically. In Spain, official data shows 55% "
-        f"of fires between 1983-2021 were started intentionally (Civio, "
-        f"based on Spanish government data) — a figure available because "
-        f"the fire season is long over and the data has been compiled and "
-        f"published."
+        f"Fire cause matters ethically. In Spain, official data shows "
+        f"55% of fires between 1983-2021 were started intentionally "
+        f"(Civio, based on Spanish government data) — a figure "
+        f"available because the fire season is long over and the "
+        f"data has been compiled and published."
     )
     st.write(
-        f"In France, President Macron has publicly stated that around 9 "
-        f"out of 10 wildfires during the still-ongoing 2026 season were "
-        f"human-caused. Unlike Spain's figure, this is a political "
-        f"statement made during an active crisis, not a verified, "
-        f"published statistic — official cause data for an ongoing fire "
-        f"season is simply not yet available. It is included here only to "
-        f"show that fire cause is being taken seriously as an issue, not "
-        f"as a data point comparable to Spain's figure."
+        f"In France, President Macron has publicly stated that "
+        f"around 9 out of 10 wildfires during the still-ongoing 2026 "
+        f"season were human-caused. Unlike Spain's figure, this is a "
+        f"political statement made during an active crisis, not a "
+        f"verified, published statistic — official cause data for an "
+        f"ongoing fire season is simply not yet available. It is "
+        f"included here only to show that fire cause is being taken "
+        f"seriously as an issue, not as a data point comparable to "
+        f"Spain's figure."
     )
     st.write(
-        f"This dataset itself does not distinguish fire cause at all, "
-        f"which further limits how findings should be interpreted."
+        f"This dataset itself does not distinguish fire cause at "
+        f"all, which further limits how findings should be "
+        f"interpreted."
     )
 
     # --- Responsible use of the dashboard ---
     st.write("### Responsible Use")
     st.write(
-        f"Country comparisons (e.g. Spain vs. France) should not be used "
-        f"to assign blame or make policy claims about a country's land "
-        f"management. Wildfire risk depends on many factors — climate, "
-        f"terrain, vegetation, and firefighting resources — that this "
-        f"dataset does not capture."
+        f"Country comparisons (e.g. Spain vs. France) should not be "
+        f"used to assign blame or make policy claims about a "
+        f"country's land management. Wildfire risk depends on many "
+        f"factors — climate, terrain, vegetation, and firefighting "
+        f"resources — that this dataset does not capture."
     )
 
     st.write("### Responsible Use of Current Events Context")
     st.write(
-        f"This project explicitly separates its historical dataset (EFFIS, "
-        f"1980-2024) from real-time news context about the 2025-2026 wildfire "
-        f"crisis. Blending these without clear attribution and date-stamping "
-        f"would risk misleading readers into thinking recent, still-unfolding "
-        f"events are reflected in the statistical analysis. Each source and "
-        f"its time period is stated explicitly wherever current events are "
-        f"referenced."
+        f"This project explicitly separates its historical dataset "
+        f"(EFFIS, 1980-2024) from real-time news context about the "
+        f"2025-2026 wildfire crisis. Blending these without clear "
+        f"attribution and date-stamping would risk misleading "
+        f"readers into thinking recent, still-unfolding events are "
+        f"reflected in the statistical analysis. Each source and its "
+        f"time period is stated explicitly wherever current events "
+        f"are referenced."
     )
 
     st.success(
-        f"**Key takeaway:** This dashboard is intended for educational and "
-        f"exploratory purposes, not as a definitive scientific or policy "
-        f"tool."
+        f"**Key takeaway:** This dashboard is intended for "
+        f"educational and exploratory purposes, not as a definitive "
+        f"scientific or policy tool."
     )
 
     st.write("### AI Usage Disclosure")
     st.write(
-        f"Claude (Anthropic) was used to assist with project structure, code "
-        f"scaffolding, README drafting, and debugging support during "
-        f"development."
+        f"Claude (Anthropic) was used to assist with project "
+        f"structure, code scaffolding, README drafting, and "
+        f"debugging support during development."
     )
     st.write(
-        f"**Important distinction:** The ethical reasoning in this section — "
-        f"including the observation that wildfires could be human-caused "
-        f"(including arson), and the decision to keep this historical "
-        f"analysis separate from real-time news — originated from the "
-        f"author's own critical thinking, not from AI suggestion. The "
-        f"2025-2026 wildfire crisis is used elsewhere in this project (e.g. "
-        f"as motivation in the README) to explain why this topic matters "
-        f"today, but it is not blended into the analysis above, since doing "
-        f"so would risk implying the dataset covers events it does not. "
-        f"Claude was used only to fact-check specific statistics (e.g. arson "
-        f"rates, current event figures) once the author had already "
-        f"identified these as relevant ethical concerns."
+        f"**Important distinction:** The ethical reasoning in this "
+        f"section — including the observation that wildfires could "
+        f"be human-caused (including arson), and the decision to "
+        f"keep this historical analysis separate from real-time "
+        f"news — originated from the author's own critical thinking, "
+        f"not from AI suggestion. The 2025-2026 wildfire crisis is "
+        f"used elsewhere in this project (e.g. as motivation in the "
+        f"README) to explain why this topic matters today, but it is "
+        f"not blended into the analysis above, since doing so would "
+        f"risk implying the dataset covers events it does not. "
+        f"Claude was used only to fact-check specific statistics "
+        f"(e.g. arson rates, current event figures) once the author "
+        f"had already identified these as relevant ethical concerns."
     )
     st.write(
-        f"The choice of dataset, business requirements, project hypothesis, "
-        f"and all interpretation of results are the author's own. AI-suggested "
-        f"data sources were fact-checked against their original documentation "
-        f"before use, and AI-drafted text was reviewed and adjusted to reflect "
-        f"the author's own analysis and voice."
+        f"The choice of dataset, business requirements, project "
+        f"hypothesis, and all interpretation of results are the "
+        f"author's own. AI-suggested data sources were fact-checked "
+        f"against their original documentation before use, and "
+        f"AI-drafted text was reviewed and adjusted to reflect the "
+        f"author's own analysis and voice."
     )
