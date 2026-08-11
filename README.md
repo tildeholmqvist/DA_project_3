@@ -132,7 +132,9 @@ Data & Trends Deep Dive page.
 The data comes from EFFIS (European Forest Fire Information System), a
 public dataset published by Copernicus. It only contains country-level
 totals — burnt area and number of fires per year. There is no personal or
-identifiable information in this dataset, so there are no privacy concerns.
+identifiable information in this dataset, so GDPR (General Data Protection
+Regulation) does not apply — GDPR governs personal data relating to
+identifiable individuals, and this dataset contains neither.
 
 ### Known Limitations
 
