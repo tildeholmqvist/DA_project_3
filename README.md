@@ -74,6 +74,26 @@ row per country-year combination. This was necessary for two reasons:
    new metrics — such as average hectares burnt per fire — by combining
    both indicators in the same row
 
+### What the Data Actually Contains
+
+The processed dataset (`wildfires_long_format.csv`) contains one row per
+country per year (1980-2024), with the following fields:
+
+| Column | Description |
+|---|---|
+| `Year` | The calendar year of the record (1980–2024) |
+| `country_iso3` | Three-letter country code (ISO 3166-1 alpha-3), e.g. `ESP` for Spain |
+| `country_name` | Full country name, e.g. "Spain" — added for readability |
+| `burnt_area_ha` | Total land area burnt by wildfires that year, in hectares |
+| `number_of_fires` | Total number of separate recorded wildfire events that year |
+
+Each row therefore answers the question: *"In this specific country, in
+this specific year, how much land burned, and across how many separate
+fires?"* The dataset does not include information below the country level
+(e.g. no regional or municipal breakdown) and does not record any
+information about individual fires beyond the yearly national totals — no
+location, date, duration, or cause of any single fire is available.
+
 Full methodology is documented in `jupyter_notebooks/01_data_cleaning.ipynb`.
 
 ---
@@ -135,6 +155,24 @@ totals — burnt area and number of fires per year. There is no personal or
 identifiable information in this dataset, so GDPR (General Data Protection
 Regulation) does not apply — GDPR governs personal data relating to
 identifiable individuals, and this dataset contains neither.
+For example, if this dataset had included individual property addresses
+affected by wildfires, or names of landowners, GDPR would require a legal
+basis for processing, data minimisation, and likely anonymisation before
+publication. Since EFFIS only publishes country-level annual totals, none
+of these obligations apply here — but they would apply immediately if this
+project were extended to include, for example, individual insurance claims
+or property records.
+
+### Social Implications
+
+If findings from this dashboard were used to characterise a country's
+wildfire risk, this could carry real social and economic consequences —
+for example, influencing tourism decisions, insurance pricing, or public
+perception of a region, based on a ranking that partly reflects reporting
+completeness rather than only actual fire activity. Countries with fewer
+resources for environmental monitoring may under-report wildfires
+relative to well-resourced countries, meaning any apparent "ranking"
+should be treated with caution rather than as a definitive risk score.
 
 ### Known Limitations
 
@@ -182,9 +220,6 @@ these without clear attribution and date-stamping would risk misleading
 readers into thinking recent, still-unfolding events are reflected in the
 statistical analysis. Each source and its time period is stated explicitly
 wherever current events are referenced.
-
-**Key takeaway:** This dashboard is intended for educational and exploratory
-purposes, not as a definitive scientific or policy tool.
 
 ### AI Usage Disclosure
 
@@ -234,6 +269,9 @@ noted honestly rather than forced.
 | Responsible Use and Disclosure of AI | Directly applied — see AI Usage Disclosure above |
 | An Ethics Committee | Reflective question: if this dashboard were used in a real policy setting, a governance body would ideally include EFFIS data scientists, wildfire management experts from each focus country, and representatives from affected communities |
 
+**Key takeaway:** This dashboard is intended for educational and exploratory
+purposes, not as a definitive scientific or policy tool.
+
 ---
 
 ## Dashboard Design
@@ -245,11 +283,23 @@ The dashboard is built with Streamlit, using a multi-page structure
 Plain-language overview for a non-technical audience, with a current-events
 context note and one key chart.
 
+**Relevance:** Addresses BR1 and BR2. From a user story perspective: *"As
+a member of the public or policymaker with no data background, I want to
+quickly understand wildfire trends without interpreting raw statistics
+myself, so that I can form an informed view without technical expertise."*
+
 ![Executive Summary](docs/images/executive_summary.png)
 
 ### 🔬 Data & Trends Deep Dive
 Full methodology for a technical audience: Europe-wide comparison, the
 project hypothesis, detailed charts (line, bar, scatter), and validation.
+
+**Relevance:** Addresses BR1 and BR3. From a user story perspective: *"As
+an analyst or technically-literate reader, I want to see the full evidence
+and methodology behind the project's conclusions, so that I can verify the
+findings myself rather than taking them on trust."* This page directly
+supports BR3 by making the frequency-vs-severity distinction between
+countries (few large fires vs. many small fires) explicit and evidenced.
 
 ![Data & Trends Deep Dive - Europe-Wide Comparison and Hypothesis](docs/images/data_deep_dive_1.png)
 ![Data & Trends Deep Dive - Burnt Area Trends and Fire Size](docs/images/data_deep_dive_2.png)
@@ -259,11 +309,26 @@ project hypothesis, detailed charts (line, bar, scatter), and validation.
 Data source, privacy, known limitations (including fire cause and source
 reliability), responsible use, and AI usage disclosure.
 
+**Relevance:** From a user story perspective: *"As any reader of this
+dashboard, I want to understand what this data can and cannot tell me, so
+that I don't draw conclusions the data doesn't support."* This page was
+planned as a dedicated, easy-to-find section from the start of the
+project (see Business Requirements and Project Plan), rather than added
+as an afterthought — ethical transparency was treated as a core
+requirement, not an extra.
+
 ![Ethics & Data Governance - Data Source, Privacy, and Known Limitations](docs/images/ethics_1.png)
 ![Ethics & Data Governance - Responsible Use and AI Usage Disclosure](docs/images/ethics_2.png)
 
 ### ℹ️ About
 Data source, license, and author information.
+
+**Relevance:** Supports transparency and reproducibility for any reader.
+From a user story perspective: *"As a reader, mentor, or assessor, I want
+to quickly find the data source, license, and project repository, so that
+I can verify or reuse this work appropriately."* This page keeps
+attribution and sourcing separate from the analytical pages, so citation
+information doesn't clutter the main findings.
 
 ![About](docs/images/about.png)
 
@@ -290,6 +355,8 @@ Data source, license, and author information.
 
 Full task tracking is available on the project's
 [GitHub Projects board](https://github.com/users/tildeholmqvist/projects/12).
+
+![Project Board](docs/images/project_board.png)
 
 ---
 
@@ -343,10 +410,6 @@ the top of the notebook, alongside `import pandas as pd`.
 * **Broader country coverage:** The current analysis focuses on four
   countries; expanding the detailed comparison to more of the 31 countries
   in the dataset could reveal further regional patterns.
-* **Simple trend forecasting:** Adding a basic trend-line extrapolation
-  (not full machine learning) could give readers a rough sense of where
-  current patterns might lead, clearly labelled as illustrative rather
-  than predictive.
 * **Deployment performance:** As currently deployed on Render's free tier,
   the app may be slow to "wake up" after inactivity. Upgrading to a paid
   tier would improve user experience for a production use case.
@@ -366,14 +429,25 @@ the top of the notebook, alongside `import pandas as pd`.
    values (which would have fabricated data), rows with no data at all were
    dropped, while partial data was retained.
 
-3. **Balancing historical data with an unfolding current event** — deciding
-   how much to reference the ongoing 2025-2026 wildfire crisis without
-   blending it into the statistical analysis of the 1980-2024 dataset. This
-   required being explicit throughout the project about which claims come
-   from the dataset versus from real-time news sources, and treating
-   verified historical statistics (e.g. Spain's arson data) differently
-   from unverified statements made during an active crisis (e.g. France's
-   2026 figures).
+3. **Balancing historical data with an unfolding current event** —
+   deciding how much to reference the ongoing 2025-2026 wildfire crisis
+   without blending it into the statistical analysis of the 1980-2024
+   dataset. This required being explicit throughout the project about
+   which claims come from the dataset versus from real-time news sources,
+   and treating verified historical statistics (e.g. Spain's arson data)
+   differently from unverified statements made during an active crisis
+   (e.g. France's 2026 figures).
+
+4. **Technical growth beyond this project's scope** — while this project
+   used descriptive statistics (mean, groupby aggregations) rather than
+   predictive modelling, more advanced approaches were considered — for
+   example, a simple linear regression or ARIMA time-series model could
+   estimate expected burnt area per year, or a clustering algorithm (e.g.
+   k-means) could group the 31 countries by wildfire behaviour pattern
+   rather than manually selecting four. These were intentionally left for
+   future work to keep the analysis focused and interpretable for a
+   non-technical audience, in line with this project's ethical commitment
+   to not overstating what the data can predict.
 
 ---
 
