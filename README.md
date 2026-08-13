@@ -376,6 +376,11 @@ Code Institute PEP8 Validator
 ([pep8ci.herokuapp.com](https://pep8ci.herokuapp.com/#)), with no errors
 found.
 
+During final review, Flake8 warnings (`f-string is missing placeholders`)
+were found across all `app_pages/*.py` files — an unnecessary `f` prefix
+had been used on strings with no variable interpolation. Fixed by removing
+the `f` prefix where not needed.
+
 ### Manual Testing — Streamlit Dashboard
 Each of the four dashboard pages (Executive Summary, Data & Trends Deep
 Dive, Ethics & Data Governance, About) was manually tested on the live
