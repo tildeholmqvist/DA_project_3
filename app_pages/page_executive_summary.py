@@ -8,19 +8,19 @@ def executive_summary_body():
     st.write("## Executive Summary")
 
     st.info(
-        f"This page summarises wildfire trends in Southern Europe "
-        f"(1980-2024) in plain language, with a focus on Spain, "
-        f"Portugal, France and Greece."
+        "This page summarises wildfire trends in Southern Europe "
+        "(1980-2024) in plain language, with a focus on Spain, "
+        "Portugal, France and Greece."
     )
 
     st.warning(
-        f"**Why this matters now:** As of July 2026, France and Spain "
-        f"are experiencing severe wildfire activity — France has "
-        f"recorded 3.4 times its annual average number of fires "
-        f"(Copernicus data, via CNN, 27 July 2026). This dashboard "
-        f"analyses historical data (1980-2024) to provide context for "
-        f"the current crisis, but the current events themselves are "
-        f"not part of the dataset analysed below."
+        "**Why this matters now:** As of July 2026, France and Spain "
+        "are experiencing severe wildfire activity — France has "
+        "recorded 3.4 times its annual average number of fires "
+        "(Copernicus data, via CNN, 27 July 2026). This dashboard "
+        "analyses historical data (1980-2024) to provide context for "
+        "the current crisis, but the current events themselves are "
+        "not part of the dataset analysed below."
     )
 
     df = pd.read_csv("inputs/processed/wildfires_long_format.csv")
@@ -47,7 +47,7 @@ def executive_summary_body():
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.success(
-        f"**Key takeaway:** Spain has recorded the highest average "
-        f"annual burnt area among these four countries, while France "
-        f"has historically had the lowest."
+        "**Key takeaway:** Spain has recorded the highest average "
+        "annual burnt area among these four countries, while France "
+        "has historically had the lowest."
     )

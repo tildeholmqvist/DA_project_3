@@ -8,9 +8,9 @@ def data_deep_dive_body():
     st.write("## Data & Trends Deep Dive")
 
     st.info(
-        f"This page takes a closer look at wildfire patterns in Spain, "
-        f"Portugal, France, and Greece (1980-2024), and compares them to "
-        f"the rest of Europe."
+        "This page takes a closer look at wildfire patterns in Spain, "
+        "Portugal, France, and Greece (1980-2024), and compares them to "
+        "the rest of Europe."
     )
 
     # Load the processed dataset
@@ -20,9 +20,9 @@ def data_deep_dive_body():
     st.write("### Europe-Wide Comparison")
 
     st.write(
-        f"Compare average annual burnt area across all 31 countries in "
-        f"the dataset, to identify which countries are most affected by "
-        f"wildfires in Europe."
+        "Compare average annual burnt area across all 31 countries in "
+        "the dataset, to identify which countries are most affected by "
+        "wildfires in Europe."
     )
 
     avg_by_country = (
@@ -49,26 +49,26 @@ def data_deep_dive_body():
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.write(
-        f"Spain tops the list — even ahead of Portugal and Italy, which "
-        f"are often associated more strongly with wildfire risk in "
-        f"public perception. France ranks only 6th overall, with a "
-        f"relatively low historical average (23k hectares/year) — a "
-        f"notable contrast to Spain's high ranking."
+        "Spain tops the list — even ahead of Portugal and Italy, which "
+        "are often associated more strongly with wildfire risk in "
+        "public perception. France ranks only 6th overall, with a "
+        "relatively low historical average (23k hectares/year) — a "
+        "notable contrast to Spain's high ranking."
     )
 
     st.success(
-        f"This confirms why Spain, Portugal, France, and Greece are the "
-        f"focus of the deeper analysis that follows."
+        "This confirms why Spain, Portugal, France, and Greece are the "
+        "focus of the deeper analysis that follows."
     )
 
     # --- Hypothesis, stated BEFORE the focus-country data is shown ---
     st.write("### Hypothesis")
     st.info(
-        f"**H1:** Among Spain, Portugal, France, and Greece, wildfire "
-        f"severity patterns are not uniform — some of these countries "
-        f"experience frequent, smaller fires, while others experience "
-        f"rarer but more severe fires, despite sharing a similar "
-        f"Mediterranean climate."
+        "**H1:** Among Spain, Portugal, France, and Greece, wildfire "
+        "severity patterns are not uniform — some of these countries "
+        "experience frequent, smaller fires, while others experience "
+        "rarer but more severe fires, despite sharing a similar "
+        "Mediterranean climate."
     )
 
     # Filter down to the four focus countries
@@ -97,22 +97,22 @@ def data_deep_dive_body():
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.write(
-        f"Spain shows the largest year-to-year swings, with several "
-        f"years exceeding 400,000 hectares burnt. Portugal recorded the "
-        f"single highest spike in the dataset. Greece shows an isolated "
-        f"but extreme spike around 2007. France stays consistently "
-        f"lower than the other three countries throughout the entire "
-        f"period."
+        "Spain shows the largest year-to-year swings, with several "
+        "years exceeding 400,000 hectares burnt. Portugal recorded the "
+        "single highest spike in the dataset. Greece shows an isolated "
+        "but extreme spike around 2007. France stays consistently "
+        "lower than the other three countries throughout the entire "
+        "period."
     )
 
     # --- Section: Average fire size per country (ha per fire) ---
     st.write("### Average Fire Size by Country")
 
     st.write(
-        f"Burnt area alone doesn't tell the whole story — a country "
-        f"could have many small fires or few very large ones. Dividing "
-        f"burnt area by number of fires gives the average size of a "
-        f"single fire."
+        "Burnt area alone doesn't tell the whole story — a country "
+        "could have many small fires or few very large ones. Dividing "
+        "burnt area by number of fires gives the average size of a "
+        "single fire."
     )
 
     avg_fires_focus = (
@@ -144,12 +144,12 @@ def data_deep_dive_body():
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.success(
-        f"**Key takeaway:** Greece's average fire burns roughly 32 "
-        f"hectares — three times larger than Spain's and over five "
-        f"times larger than Portugal's or France's. Greece's wildfire "
-        f"problem is driven by fewer but far more destructive fires, "
-        f"while Portugal and France experience many more frequent but "
-        f"smaller fires."
+        "**Key takeaway:** Greece's average fire burns roughly 32 "
+        "hectares — three times larger than Spain's and over five "
+        "times larger than Portugal's or France's. Greece's wildfire "
+        "problem is driven by fewer but far more destructive fires, "
+        "while Portugal and France experience many more frequent but "
+        "smaller fires."
     )
 
     # --- Section: Fire frequency vs fire size (scatter) ---
@@ -172,28 +172,28 @@ def data_deep_dive_body():
     st.caption("Source: EFFIS / Copernicus, 1980-2024")
 
     st.write(
-        f"This chart plots each country by two measurements at once: "
-        f"how often fires happen (left to right) and how large each "
-        f"fire tends to be (bottom to top). A country in the "
-        f"bottom-right has many small fires; a country in the top-left "
-        f"has few large fires."
+        "This chart plots each country by two measurements at once: "
+        "how often fires happen (left to right) and how large each "
+        "fire tends to be (bottom to top). A country in the "
+        "bottom-right has many small fires; a country in the top-left "
+        "has few large fires."
     )
 
     st.success(
-        f"This chart confirms the pattern directly: Portugal and "
-        f"France sit toward the bottom-right (frequent, smaller "
-        f"fires), while Greece sits clearly in the top-left "
-        f"(infrequent but very large fires). Spain falls in between — "
-        f"a moderate number of fires, but each noticeably larger than "
-        f"Portugal's or France's."
+        "This chart confirms the pattern directly: Portugal and "
+        "France sit toward the bottom-right (frequent, smaller "
+        "fires), while Greece sits clearly in the top-left "
+        "(infrequent but very large fires). Spain falls in between — "
+        "a moderate number of fires, but each noticeably larger than "
+        "Portugal's or France's."
     )
 
     # --- Validation, stated AFTER all the evidence above ---
     st.write("### Validation")
     st.success(
-        f"This hypothesis is confirmed by the data: Greece has the "
-        f"fewest fires per year (1,371) but the largest average size "
-        f"(32 ha/fire), while Portugal has the most fires (18,214/"
-        f"year) but the smallest average size (6.3 ha/fire). Spain and "
-        f"France fall between these two patterns."
+        "This hypothesis is confirmed by the data: Greece has the "
+        "fewest fires per year (1,371) but the largest average size "
+        "(32 ha/fire), while Portugal has the most fires (18,214/"
+        "year) but the smallest average size (6.3 ha/fire). Spain and "
+        "France fall between these two patterns."
     )
