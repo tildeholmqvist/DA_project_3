@@ -557,3 +557,4 @@ on a public HTTPS URL.
 ### Acknowledgements
 
 * Code Institute LMS — course material and project template
+* Marcel (mentor) — guidance throughout the project
